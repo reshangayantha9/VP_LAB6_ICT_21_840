@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,12 +17,18 @@ namespace VP_LAB6_ICT_21_840
         {
             InitializeComponent();
         }
-
+        void clear()
+        {
+            txtTask.Text = "";
+            txtDescription.Text = "";
+            monthCalendar1.SetDate(DateTime.Now);
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (txtTask.Text != "" && txtDescription.Text != "")
             {
-                dataGridView1.Rows.Add(txtTask.Text, txtDescription.Text, monthCalendar1.SelectionRange.Start.ToString("dd MMM yyyy"));
+                dataGridView1.Rows.Add(false,txtTask.Text, txtDescription.Text, monthCalendar1.SelectionRange.Start.ToString("dd MMM yyyy"));
+                clear();
             }
             else
             {
@@ -36,7 +43,8 @@ namespace VP_LAB6_ICT_21_840
                 dataGridView1.CurrentRow.Cells["Column1"].Value = txtTask.Text;
                 dataGridView1.CurrentRow.Cells["Column2"].Value = txtDescription.Text;
                 dataGridView1.CurrentRow.Cells["Column3"].Value = monthCalendar1.SelectionRange.Start.ToString("dd MMM yyyy");
-
+                dataGridView1.CurrentRow.Cells["Column4"].Value = false;
+                clear();
             }
         }
 
@@ -51,23 +59,28 @@ namespace VP_LAB6_ICT_21_840
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            bool isDone = Convert.ToBoolean(dataGridView1.CurrentRow.Cells["Column4"].Value);
+            if (isDone)
+            {
+                dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
+               
+            }
             if (dataGridView1.CurrentRow != null)
             {
-                txtTask.Text = dataGridView1.CurrentRow.Cells["Column1"].Value.ToString();
-                txtDescription.Text = dataGridView1.CurrentRow.Cells["Column2"].Value.ToString();
-                if (DateTime.TryParse(dataGridView1.CurrentRow.Cells["Column3"].Value.ToString(), out DateTime selectedDate))
-                {
-                    monthCalendar1.SetDate(selectedDate);
-                }
+               
+                    txtTask.Text = dataGridView1.CurrentRow.Cells["Column1"].Value.ToString();
+                    txtDescription.Text = dataGridView1.CurrentRow.Cells["Column2"].Value.ToString();
+                    if (DateTime.TryParse(dataGridView1.CurrentRow.Cells["Column3"].Value.ToString(), out DateTime selectedDate))
+                    {
+                        monthCalendar1.SetDate(selectedDate);
+                    }
 
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            txtTask.Text = "";
-            txtDescription.Text = "";
-            monthCalendar1.SetDate(DateTime.Now);
+            clear();
         }
     }
 }

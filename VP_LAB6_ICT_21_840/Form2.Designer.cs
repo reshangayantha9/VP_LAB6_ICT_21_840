@@ -42,6 +42,7 @@
             btnDelete = new Button();
             btnClear = new Button();
             dataGridView1 = new DataGridView();
+            Column4 = new DataGridViewCheckBoxColumn();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
@@ -86,7 +87,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(634, 53);
+            label4.Location = new Point(708, 53);
             label4.Name = "label4";
             label4.Size = new Size(73, 20);
             label4.TabIndex = 3;
@@ -112,7 +113,7 @@
             // monthCalendar1
             // 
             monthCalendar1.CalendarDimensions = new Size(1, 3);
-            monthCalendar1.Location = new Point(634, 82);
+            monthCalendar1.Location = new Point(708, 82);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 7;
             // 
@@ -163,42 +164,44 @@
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(224, 224, 224);
             dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3 });
-            dataGridView1.Location = new Point(27, 300);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column4, Column1, Column2, Column3 });
+            dataGridView1.Location = new Point(12, 300);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
             dataGridViewCellStyle2.ForeColor = Color.Black;
             dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(595, 238);
+            dataGridView1.Size = new Size(690, 238);
             dataGridView1.TabIndex = 12;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
+            // 
+            // Column4
+            // 
+            Column4.FalseValue = "false";
+            Column4.HeaderText = "Done";
+            Column4.Name = "Column4";
+            Column4.TrueValue = "true";
             // 
             // Column1
             // 
             Column1.HeaderText = "Task";
             Column1.Name = "Column1";
-            Column1.ReadOnly = true;
             // 
             // Column2
             // 
             Column2.HeaderText = "Description";
             Column2.Name = "Column2";
-            Column2.ReadOnly = true;
             Column2.Width = 300;
             // 
             // Column3
             // 
             Column3.HeaderText = "Due Date";
             Column3.Name = "Column3";
-            Column3.ReadOnly = true;
             Column3.Width = 150;
             // 
             // Form2
@@ -206,7 +209,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(0, 0, 64);
-            ClientSize = new Size(870, 549);
+            ClientSize = new Size(943, 549);
             Controls.Add(dataGridView1);
             Controls.Add(btnClear);
             Controls.Add(btnDelete);
@@ -243,6 +246,7 @@
         private Button btnDelete;
         private Button btnClear;
         private DataGridView dataGridView1;
+        private DataGridViewCheckBoxColumn Column4;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
